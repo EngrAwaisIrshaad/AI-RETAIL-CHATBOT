@@ -1,8 +1,12 @@
-# 🛍️ Retail Chatbot (AI-Based)
+# 🛍️ AI-Powered Retail Chatbot
+
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://www.python.org/) 
+[![Flask](https://img.shields.io/badge/Flask-2.3-green?logo=flask)](https://flask.palletsprojects.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?logo=mongodb)](https://www.mongodb.com/)
 
 ## 📌 Overview
 
-This project is an AI-powered Retail Chatbot developed using Python, Flask, and Machine Learning. It allows users to interact with a chatbot to order products such as shirts, trousers, and jackets.
+This project is an **AI-powered Retail Chatbot** built using **Python, Flask, and Machine Learning**. It allows users to interact with a chatbot to order products (shirts, trousers, jackets), manage a cart, and simulate payments. The chatbot uses **NLP (Natural Language Processing)** via Keras + NLTK to understand user queries and guide the conversation.
 
 ---
 
@@ -21,12 +25,12 @@ This project is an AI-powered Retail Chatbot developed using Python, Flask, and 
 
 ## 🛠️ Technologies Used
 
-* Python
-* Flask
-* MongoDB
-* TensorFlow / Keras
-* NLTK
-* HTML, CSS, JavaScript
+- **Python 3.11**  
+- **Flask** for web app backend  
+- **MongoDB** for database storage  
+- **TensorFlow / Keras** for NLP model  
+- **NLTK** for text preprocessing  
+- **HTML, CSS, JavaScript** for frontend 
 
 ---
 
@@ -34,15 +38,17 @@ This project is an AI-powered Retail Chatbot developed using Python, Flask, and 
 
 ```
 AI_Chatbot_Project/
-│── app.py
-│── chatbot.py
-│── train.py
-│── templates/
-│── intents.json
-│── model.h5
-│── tokenizer.pkl
+│── app.py # Flask app with chatbot routes
+│── chatbot.py # Chatbot NLP processing
+│── train.py # Model training script
+│── intents.json # Chatbot intents and responses
+│── model.h5 # Trained model (ignored in Git)
+│── tokenizer.pkl # Tokenizer (ignored in Git)
 │── requirements.txt
 │── README.md
+│── .env # Contains MONGO_URI & FLASK_SECRET_KEY (ignored)
+│── templates/
+│ └── index.html
 ```
 
 ---
@@ -55,10 +61,12 @@ AI_Chatbot_Project/
 git clone https://github.com/your-username/retail-chatbot.git
 ```
 
-2. Navigate to project:
+2. Create and activate virtual environment
 
 ```
-cd retail-chatbot
+python3 -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
 ```
 
 3. Install dependencies:
@@ -66,8 +74,12 @@ cd retail-chatbot
 ```
 pip install -r requirements.txt
 ```
+4. Create .env file
 
-4. Run the app:
+MONGO_URI=your_mongodb_uri
+FLASK_SECRET_KEY=sk123
+
+5. Run the app:
 
 ```
 python app.py
