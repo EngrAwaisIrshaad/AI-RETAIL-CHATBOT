@@ -1,0 +1,49 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": ["hi", "hello", "hey", "start"],
+      "responses": ["Hello! 👋 Welcome to RetailChatBot. What would you like to order today?"]
+    },
+    {
+      "tag": "product_selection",
+      "patterns": ["shirts", "trousers", "jackets", "shirt", "trouser", "jacket"],
+      "responses": ["Great choice! Which type would you like?"]
+    },
+    {
+      "tag": "type_selection",
+      "patterns": ["formal", "casual", "t-shirt", "jeans", "chinos", "leather", "denim", "hoodie"],
+      "responses": ["Got it. How many would you like to purchase?"]
+    },
+    {
+      "tag": "quantity_selection",
+      "patterns": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "responses": ["Items added to cart! Please proceed to payment (paypal, debit card, or credit card)."]
+    },
+    {
+      "tag": "payment_confirmation",
+      "patterns": ["paypal", "debit card", "credit card"],
+      "responses": ["Payment accepted! Payment done. Type 'give receipt' to view your order summary."]
+    },
+    {
+      "tag": "generate_receipt",
+      "patterns": ["give receipt", "receipt", "show receipt", "my order"],
+      "responses": ["Here is your receipt! Thank you for shopping! 🛍️ Type 'hello' to start a new order."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "exit", "quit"],
+      "responses": ["Goodbye! Have a great day and thank you for shopping with RetailChatBot!"]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thank you", "thanks", "thank you so much"],
+      "responses": ["You're very welcome! Feel free to ask if you need anything else."]
+    },
+    {
+      "tag": "fallback",
+      "patterns": ["what?", "huh", "i don't understand", "confused"],
+      "responses": ["I'm sorry, I didn't understand that. Can you rephrase or type 'hello' to restart?"]
+    }
+  ]
+}

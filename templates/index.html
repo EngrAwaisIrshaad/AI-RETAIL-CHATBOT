@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RetailChatBot</title>
+    <style>
+        body { font-family: sans-serif; background: #ece5dd; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .chat-container { width: 400px; height: 600px; background: white; display: flex; flex-direction: column; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .header { background: #075e54; color: white; padding: 15px; text-align: center; border-radius: 10px 10px 0 0; }
+        #chat-box { flex: 1; padding: 20px; overflow-y: auto; background: #e5ddd5; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 10px; max-width: 80%; }
+        .user-msg { background: #dcf8c6; margin-left: auto; }
+        .bot-msg { background: #ffffff; }
+        .input-area { display: flex; padding: 10px; border-top: 1px solid #ddd; }
+        input { flex: 1; padding: 10px; border: none; outline: none; }
+        button { background: #075e54; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+
+        /* Popup Styles */
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 50; }
+        #receipt-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 25px; border: 3px solid #075e54; border-radius: 15px; width: 320px; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        #receipt-content { margin: 15px 0; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="header">RetailChatBot</div>
+        <div id="chat-box"></div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Receipt Popup -->
+    <div id="overlay"></div>
+    <div id="receipt-popup">
+        <h3 style="color: #075e54;">Order Receipt</h3>
+        <div id="receipt-content"></div>
+        <button onclick="closeReceipt()" style="width: 100%;">Close Receipt</button>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box"),
+              input = document.getElementById("user-input"),
+              btn = document.getElementById("send-btn");
+
+        async function sendMessage() {
+            const msg = input.value.trim(); if (!msg) return;
+            chatBox.innerHTML += `<div class="message user-msg">${msg}</div>`;
+            input.value = "";
+
+            const res = await fetch("/get", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({msg})
+            });
+            const data = await res.json();
+
+            chatBox.innerHTML += `<div class="message bot-msg">${data.msg}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Logic to handle receipt display
+            if (data.receipt_popup) {
+                let html = "<ul style='list-style: none; padding: 0;'>";
+                data.receipt.forEach(i => {
+                    html += `<li>${i.item}: <strong>£${i.total}</strong></li>`;
+                });
+                html += `</ul><p style='font-size: 1.2em;'><strong>Grand Total: £${data.total}</strong></p>`;
+
+                document.getElementById("receipt-content").innerHTML = html;
+                document.getElementById("receipt-popup").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+            }
+        }
+
+        function closeReceipt() {
+            document.getElementById("receipt-popup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        btn.onclick = sendMessage;
+        input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
+    </script>
+</body>
+</html>
