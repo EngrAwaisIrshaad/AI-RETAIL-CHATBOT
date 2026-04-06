@@ -98,6 +98,29 @@ http://127.0.0.1:5050
 * Type **"hello"** to start chatbot
 * Follow steps to order products
 
+## 📸 Screenshots & Demo
+
+### Model Training
+![Model Training](screenshots/Model%20Training.jpeg)
+
+### Start of Conversation
+![Start of Conversation](screenshots/Start%20of%20Conversation.jpeg)
+
+### Products List
+![Products List](screenshots/Products%20List.jpeg)
+
+### Order & Payment
+![Order & Payment](screenshots/Order%20&%20Payment.jpeg)
+
+### Receipt / Payment
+![Receipt / Payment](screenshots/Receipt-Payment.jpeg)
+
+### Terminal Output
+![Terminal Output](screenshots/Terminal%20Output.jpeg)
+
+### Video Demo
+[![Video Demo](screenshots/Video%20Demo%20Thumbnail.jpeg)](screenshots/Video%20Demo.mp4)
+
 ---
 
 ## 💾 Database
