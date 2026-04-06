@@ -121,8 +121,6 @@ http://127.0.0.1:5050
 ### Video Demo
 [![Video Demo](screenshots/Video%20Demo%20Thumbnail.jpeg)](screenshots/Video%20Demo.mp4)
 
-### Video Demo
-[![Video Demo](screenshots/Video%20Demo%20Thumbnail.jpeg)](screenshots/Video%20Demo.mp4)
 
 ---
 
